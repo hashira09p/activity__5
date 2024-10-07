@@ -1,0 +1,24 @@
+<%= link_to 'New Post', new_product_path, class: 'btn btn-success' %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Brand Name</th>
+      <th scope="col">Descrition</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+    <tr>
+      <td><%= product.name %></td>
+      <td><%= product.description %></td>
+      <td><%= product.quantity %></td>
+      <td><%= product.price %></td>
+      <td><%= link_to 'Edit', edit_product_path(product.id), class: 'btn btn-primary' %></td>
+      <td><%= button_to 'Delete', product_path(product.id), method: :delete, class: 'btn btn-danger' %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
