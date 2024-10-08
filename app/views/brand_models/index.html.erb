@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Model</th>
+    <th scope="col">Product ID</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @brand_models.each do |brand_model| %>
+    <tr>
+      <td><%= brand_model.id %></td>
+      <td><%= brand_model.name %></td>
+      <td><%= brand_model.product_id %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

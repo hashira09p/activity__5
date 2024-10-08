@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_07_160743) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_08_060640) do
+  create_table "brand_models", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_brand_models_on_product_id"
+  end
+
   create_table "products", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -24,4 +32,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_07_160743) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "brand_models", "products"
 end

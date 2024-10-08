@@ -1,31 +1,31 @@
-<div class="card">
+<div class="card mx-auto" style="max-width: 400px;">
   <div class="card-header">
-    <h5 class="card-title">New Product</h5>
+    <h5 class="card-title text-center">New Product</h5>
   </div>
-  <div class="card-body">
-    <%= form_with model: @product do |form| %>
-      <div class="mb-3">
-        <%= form.label :brand_name, class: "form-label" %>
-        <%= form.text_field :name, class: "form-control", required: true %>
+  <div class="card-body p-2">
+    <%= form_with model: @product, class: "form-inline" do |form| %>
+      <div class="mb-1">
+        <%= form.label :name, "Brand Name", class: "form-label sr-only" %>
+        <%= form.text_field :name, class: "form-control form-control-sm", required: true, placeholder: "Brand Name" %>
       </div>
 
-      <div class="mb-3">
-        <%= form.label :description, class: "form-label" %>
-        <%= form.text_area :description, class: "form-control", rows: 1, required: true %>
+      <div class="mb-1">
+        <%= form.label :description, class: "form-label sr-only" %>
+        <%= form.text_area :description, class: "form-control form-control-sm", rows: 1, required: true, placeholder: "Description" %>
       </div>
 
-      <div class="mb-3">
-        <%= form.label :quantity, class: "form-label" %>
-        <%= form.text_field :quantity, class: "form-control", required: true %>
+      <div class="mb-1">
+        <%= form.label :quantity, class: "form-label sr-only" %>
+        <%= form.number_field :quantity, class: "form-control form-control-sm", min: 0, step: 1, required: true, placeholder: "Qty" %>
       </div>
 
-      <div class="mb-3">
-        <%= form.label :price, class: "form-label" %>
-        <%= form.text_field :price, class: "form-control", required: true %>
+      <div class="mb-1">
+        <%= form.label :price, class: "form-label sr-only" %>
+        <%= form.text_field :price, class: "form-control form-control-sm", required: true, placeholder: "Price" %>
       </div>
 
-      <div class="mb-3">
-        <%= form.submit class: "btn btn-primary" %>
+      <div class="mb-1">
+        <%= form.submit class: "btn btn-primary btn-sm w-100" %>
       </div>
     <% end %>
   </div>
