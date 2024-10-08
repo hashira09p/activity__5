@@ -12,7 +12,6 @@ Product.create(name: "asus", description: "cellphone", quantity: 8, price: 18.50
 Product.create(name: "lenovo", description: "cellphone", quantity: 7, price: 21.50, available: true, release_at: DateTime.now - 4, expiry_date: DateTime.now + 28, discount: 0.30)
 Product.create(name: "ROG", description: "cellphone", quantity: 9, price: 20.25, available: true, release_at: DateTime.now - 6, expiry_date: DateTime.now + 22, discount: 0.10)
 Product.create(name: "samsung", description: "cellphone", quantity: 1, price: 19.95, available: false, release_at: DateTime.now - 8, expiry_date: DateTime.now + 12, discount: 0.15)
-Product.save
 ```
 * Find products where price is between 50 and 150.
 
@@ -136,7 +135,7 @@ Product.where(description: "cellphone")
 
 * Find products where price is greater than 100.
 ```ruby=
-Produt.where("price > ? ",100)
+Product.where("price > ? ",100)
 
 * Retrieve products where available is true.
 ```
@@ -152,7 +151,7 @@ Product.where('price < ?', 50)
 
 * Find products where discount is exactly 10%
 ```ruby=
-Product.where('discount = ?', 10)
+Product.where(discount: 10)
 ```
 
 * Retrieve products where name contains the word "Pro".
@@ -167,40 +166,40 @@ Product.where('name LIKE ?', '%portable%')
 
 * Find products where price is between 50 and 150.".
 ```ruby=
-Product.where(:price => 50..150)
+Product.where(price: 50..150)
 ```
 
 * Retrieve products where available is false and quantity is greater than 0
 ```ruby=
-Product.where(available: false).and(Products.where("quantity > '0'"))
+Product.where(available: false).where('quantity > ?', 0)
 ```
 
 * Fetch products where released_at is after January 1, 2023
 ```ruby=
-Product.where('released_at > ?', '2023-01-01')
+Product.where('release_at > ?', '2023-01-01')
 ```
 
 * Find products where expiry_date is nil.
 ```ruby=
-Product.where(release_at: nil)
+Product.where(expiry_date: nil)
 ```
 * Retrieve products where released_at is before January 1, 2022.
 ```ruby=
-Product.where('released_at < ?', '2022-01-01')
+Product.where('release_at < ?', '2022-01-01')
 ```
 
 * Fetch products where quantity is between 10 and 100.
 ```ruby=
-Product.where(:quantity => 10..100)
+Product.where(quantity: 10..100)
 ```
 * Find products where discount is greater than or equal to 5%.
 ```ruby=
-Product.where(':discount >= ?', 5)
+Product.where('discount >= ?', 5)
 ```
 
 * Retrieve products where price is less than or equal to 200 and available is true.
 ```ruby=
-Product.where('price <= ? AND availble = ?', 5, true)
+Product.where('price <= ?', 5).where(available: true)
 ```
 
 * Fetch products where expiry_date is before today’s date.
@@ -295,17 +294,17 @@ Product.where(available: false).update(quantity: nil)
 
 * Update released_at to the current date for products with a price less than 50.
 ```ruby= 
-Product.where(price: ..49).update(released_at: DateTime.now)
+Product.where(price: 49..0).update(released_at: DateTime.now)
 ```
 
 * Reduce the price by 20% for products where quantity is less than 5.
 ```ruby= 
-Product.where(quantity: ..4).update(discount: 20)
+Product.where(quantity: 4..0).update(discount: 20)
 ```
 
 * Set the discount to 0% for products with a price greater than or equal to 300.
 ```ruby= 
-Product.where(price: 300..).update(discount: 0)
+ Product.where('price >= ?', 300).update(discount: 0)
 ```
 
 * Change the description to "Limited time offer" where the discount is 15%.
@@ -335,12 +334,12 @@ Product.where('description LIKE ?' , '%sale%').update(price: 150)
 
 * Delete a product where name is "Laptop".
 ```ruby= 
-Product = Product.find_by(name: 'Laptop').destroy
+Product.find_by(name: 'Laptop').destroy
 ```
 
 * Remove all products where available is false
 ```ruby= 
-Product = Product.find_by(name: 'Laptop').destroy
+Product.find_by(available: false).destroy
 ```
 
 * Delete products where price is greater than 500.
@@ -420,7 +419,7 @@ Product.where(discount: nil).delete_all
 
 * Delete products where discount is less than 5%.
 ```ruby= 
- Product.where(expiry_date: Date.today..Date.today+1.month).each do |product| product.destory end
+ Product.where(discount: 5..0).destroy_all
 ```
 
 * Print the name of all the products
