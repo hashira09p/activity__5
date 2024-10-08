@@ -4,5 +4,5 @@ class Product < ApplicationRecord
   validates :quantity, numericality: { only_integer: true }
   validates :price, numericality: { only_float: true, greater_than: -1 }
 
-  has_many :brand_models
+  has_many :brand_models, dependent: :destroy
 end
