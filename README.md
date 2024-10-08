@@ -436,3 +436,19 @@ Product.where(discount: nil).delete_all
 * Write a new migration to rename the description to content
 * Write a new migration to add a new column image
 * Write a new migration to remove the column expiry_date  
+
+* Validations
+```ruby=
+ 
+rails console
+
+product = Product.new
+
+product.name= " "
+product.description = " "
+
+product.valid? # => false
+
+product.errors.full_messages # => ["Name can't be blank", "description can't be blank"]
+
+```
