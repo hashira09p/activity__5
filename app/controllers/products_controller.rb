@@ -59,7 +59,11 @@ class ProductsController < ApplicationController
   end
 
   def search_by_availability
-    @products = Product.where(available: params[:available]) if params[:available].present? && params[:available].present? 
+    @products = Product.where(available: params[:available]) if params[:available].present?
+  end
+
+  def search_by_released_date
+    @products = Product.where(release_at: params[:release_at]..DateTime.now) if params[:release_at].present?
   end
 
   def search_products
@@ -72,6 +76,8 @@ class ProductsController < ApplicationController
     elsif params[:available].present?
       puts params[:available]
       search_by_availability
+    elsif params[:release_at].present?
+      search_by_released_date
     end
   end
 end
