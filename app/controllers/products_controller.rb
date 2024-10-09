@@ -1,7 +1,13 @@
 class ProductsController < ApplicationController
+  before_action :search_products, only: :index
   before_action :get_id, only: [:edit, :update, :destroy]
   def index
-    @products = Product.all
+    if search_products.nil?
+      @products = Product.all
+    elsif search_products.present?
+      search_products
+    end
+    
   end
 
   def new
@@ -40,5 +46,15 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :description, :quantity, :price)
+  end
+
+  def search_name
+    @products = Product.where(name: "#{params[:name]}") if params[:name].present?
+  end
+
+  def search_products
+    puts params[:name]
+    search_name
+
   end
 end
