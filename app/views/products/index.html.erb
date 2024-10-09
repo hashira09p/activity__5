@@ -41,26 +41,10 @@
 
             <div class="row mb-3">
               <div class="col">
-                <%= label_tag :release_at_from, "Release Date From", class: "form-label" %>
+                <%= label_tag :release_at_from, "Released Date", class: "form-label" %>
                 <%= date_field_tag :release_at_from, params[:release_at_from], class: "form-control" %>
               </div>
-              <div class="col">
-                <%= label_tag :release_at_to, "To", class: "form-label" %>
-                <%= date_field_tag :release_at_to, params[:release_at_to], class: "form-control" %>
-              </div>
             </div>
-
-            <div class="row mb-3">
-              <div class="col">
-                <%= label_tag :expired_at_from, "Expired Date From", class: "form-label" %>
-                <%= date_field_tag :expired_at_from, params[:expired_at_from], class: "form-control" %>
-              </div>
-              <div class="col">
-                <%= label_tag :expired_at_to, "To", class: "form-label" %>
-                <%= date_field_tag :expired_at_to, params[:expired_at_to], class: "form-control" %>
-              </div>
-            </div>
-
             <%= submit_tag "Search", class: "btn btn-primary w-100" %>
           <% end %>
         </div>
@@ -80,6 +64,7 @@
               <th scope="col">Description</th>
               <th scope="col">Quantity</th>
               <th scope="col">Price</th>
+              <th scope="col">Released Date</th>
               <th scope="col" class="text-center">Actions</th>
             </tr>
           </thead>
@@ -91,6 +76,7 @@
                   <td><%= product.description.capitalize! %></td>
                   <td><%= product.quantity %></td>
                   <td>$<%= product.price %></td>
+                  <td><%= product.release_at %></td>
                   <td class="text-center">
                     <div class="btn-group" role="group" aria-label="Product Actions">
                       <%= link_to '<i class="fas fa-cogs"></i> Models'.html_safe, product_brand_models_path(product.id), class: 'btn btn-info btn-sm' %>
