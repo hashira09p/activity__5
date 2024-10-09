@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :quantity, :price)
+    params.require(:product).permit(:name, :description, :quantity, :total_earnings, :company_launched)
   end
 
   def search_name
@@ -54,16 +54,16 @@ class ProductsController < ApplicationController
     @products = Product.where(quantity: params[:min_quantity]..params[:max_quantity]) if params[:min_quantity].present? && params[:max_quantity].present? 
   end
 
-  def search_by_price
-    @products = Product.where(price: params[:min_price]..params[:max_price]) if params[:min_price].present? && params[:max_price].present? 
+  def search_by_total_earnings
+    @products = Product.where(total_earnings: params[:min_total_earnings]..params[:max_total_earnings]) if params[:min_total_earnings].present? && params[:max_total_earnings].present? 
   end
 
   def search_by_availability
     @products = Product.where(available: params[:available]) if params[:available].present?
   end
 
-  def search_by_released_date
-    @products = Product.where(release_at: params[:release_at]..DateTime.now) if params[:release_at].present?
+  def search_by_company_launched
+    @products = Product.where(company_launched: params[:company_launched]..DateTime.now) if params[:company_launched].present?
   end
 
   def search_products
@@ -71,13 +71,13 @@ class ProductsController < ApplicationController
       search_name
     elsif params[:min_quantity].present? && params[:max_quantity].present?
       search_by_quantity
-    elsif params[:min_price].present? && params[:max_price].present?
-      search_by_price
+    elsif params[:min_total_earnings].present? && params[:max_total_earnings].present?
+      search_by_total_earnings
     elsif params[:available].present?
       puts params[:available]
       search_by_availability
-    elsif params[:release_at].present?
-      search_by_released_date
+    elsif params[:company_launched].present?
+      search_by_company_launched
     end
   end
 end

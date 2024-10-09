@@ -20,8 +20,13 @@
       </div>
 
       <div class="mb-1">
-        <%= form.label :price, class: "form-label sr-only" %>
-        <%= form.text_field :price, class: "form-control form-control-sm", required: true, placeholder: "Price" %>
+        <%= form.label :total_earnings, class: "form-label sr-only" %>
+        <%= form.text_field :total_earnings, class: "form-control form-control-sm", required: true %>
+      </div>
+
+      <div class="mb-1">
+        <%= form.label :company_launched, class: "form-label sr-only" %>
+        <%= form.date_field :company_launched, class: "form-control form-control-sm", required: true %>
       </div>
 
       <div class="mb-1">
