@@ -9,19 +9,17 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <style>
-        .header {
-            background: linear-gradient(to right, #4a90e2, #9013fe);
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-        }
-        .header h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        .header p {
-            font-size: 1.25rem;
-        }
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: #f8f9fa; /* Light gray on hover */
+  }
+  
+    .btn-group .btn {
+    margin: 0 2px; /* Space between buttons */
+      }
     </style>
   </head>
 
