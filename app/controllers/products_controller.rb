@@ -1,9 +1,12 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, except: :index
   before_action :search_products, only: :index
   before_action :get_id, only: [:edit, :update, :destroy]
+  before_action :validate_post_owner, only: [:edit, :update, :destroy]
+
   def index
     if search_products.nil?
-      @products = Product.all
+      @products = Product.includes(:user).all.order(created_at: :desc)
     elsif search_products.present?
       search_products
     end
@@ -15,9 +18,13 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @product.user = current_user
     if @product.save
+      flash[:notice] = 'Post created successfully'
       redirect_to root_path
       puts params[:product]
+    else
+      flash.now[:alert] = 'Post create failed'
     end
   end
 
@@ -78,6 +85,13 @@ class ProductsController < ApplicationController
       search_by_availability
     elsif params[:company_launched].present?
       search_by_company_launched
+    end
+  end
+
+  def validate_post_owner
+    unless @product.user == current_user
+      flash[:notice] = 'the post not belongs to you'
+      redirect_to root_path
     end
   end
 end
