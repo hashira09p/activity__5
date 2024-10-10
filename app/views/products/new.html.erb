@@ -3,7 +3,7 @@
     <h5 class="card-title text-center">New Product</h5>
   </div>
   <div class="card-body p-2">
-    <%= form_with model: @product, class: "form-inline" do |form| %>
+    <%= form_with model: @product, data: { turbo: false }, class: "form-inline" do |form| %>
       <div class="mb-1">
         <%= form.label :name, "Brand Name", class: "form-label sr-only" %>
         <%= form.text_field :name, class: "form-control form-control-sm", required: true, placeholder: "Brand Name" %>
