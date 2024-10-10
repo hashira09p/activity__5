@@ -90,7 +90,7 @@ class ProductsController < ApplicationController
 
   def validate_post_owner
     unless @product.user == current_user
-      flash[:notice] = 'the post not belongs to you'
+      flash[:alert] = 'the post not belongs to you'
       redirect_to root_path
     end
   end
