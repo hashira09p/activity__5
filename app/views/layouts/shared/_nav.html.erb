@@ -14,8 +14,12 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <%= link_to 'Home', root_path, class: 'nav-item nav-link active' %>
-        <%= link_to 'Login', user_session_path, class: 'btn btn-success' %>
-        <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-dark' %>
+        <% if user_signed_in? %>
+          <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to 'Login', user_session_path, class: 'btn btn-success' %>
+          <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-dark' %>
+        <% end %>
       </ul>
     </div>
   </div>
