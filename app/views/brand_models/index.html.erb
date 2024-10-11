@@ -1,7 +1,7 @@
+<%= link_to 'New Model', new_product_brand_model_path, class: 'btn btn-success' %>
 <table class="table">
   <thead>
   <tr>
-    <th scope="col">ID</th>
     <th scope="col">Model</th>
     <th scope="col">Product ID</th>
     <th scope="col">Released Date</th>
@@ -10,7 +10,6 @@
   <tbody>
   <% @brand_models.each do |brand_model| %>
     <tr>
-      <td><%= brand_model.id %></td>
       <td><%= brand_model.name %></td>
       <td><%= brand_model.product_id %></td>
       <td><%= brand_model.created_at %></td>

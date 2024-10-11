@@ -1,4 +1,4 @@
-user1 = User.create(email: 'sample@koda.com')
+user1 = User.create(id: 1)
 
 Product.create([
   { name: "Xiaomi", description: "Chinese Company", quantity: 20, total_earnings: 2000000.80, available: true, company_launched: Date.new(2010, 4, 6), expiry_date: Date.today + 365, discount: 0.05, user: user1 },
@@ -55,10 +55,10 @@ Product.create([
 ])
 
 
-BrandModel.create([{name: 'V7', product_id: 3},
-                   {name: 'V9', product_id: 3},
-                   {name: 'V11', product_id: 3},
-                   {name: 'POCO X3', product_id: 1},
-                   {name: 'POCO X2', product_id: 1},
-                   {name: 'POCO F1', product_id: 1}
+BrandModel.create([{name: 'V7', product_id: 3, user: user1},
+                   {name: 'V9', product_id: 3, user: user1},
+                   {name: 'V11', product_id: 3, user: user1},
+                   {name: 'POCO X3', product_id: 1, user: user1},
+                   {name: 'POCO X2', product_id: 1, user: user1},
+                   {name: 'POCO F1', product_id: 1, user: user1}
                   ])
