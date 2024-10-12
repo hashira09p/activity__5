@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
 
   def index
     if search_products.nil?
-      @products = Product.includes(:user).all.order(created_at: :desc)
+      @products = Product.includes(:user).page(params[:page]).per(5).order(created_at: :desc)
     elsif search_products.present?
       search_products
     end
