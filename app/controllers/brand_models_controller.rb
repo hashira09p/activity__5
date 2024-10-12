@@ -16,8 +16,7 @@ class BrandModelsController < ApplicationController
     @brand_model.user = current_user
     if @brand_model.save
       flash[:notice] = 'Model created successfully'
-    else
-      render :new
+      redirect_to product_brand_models_path
     end
   end
 
