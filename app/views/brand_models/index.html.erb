@@ -1,5 +1,5 @@
-<% if user_signed_in? %>
-  <%= link_to 'New Model', new_product_brand_model_path, class: 'btn btn-success' %>
+<% if user_signed_in? && @product.user == current_user %>
+  <%= link_to 'New Model', new_product_brand_model_path(@product), class: 'btn btn-success' %>
 <% end %>
 
 <table class="table">
@@ -8,6 +8,7 @@
     <th scope="col">Model</th>
     <th scope="col">Product ID</th>
     <th scope="col">Released Date</th>
+    <th scope="col">Actions</th>
   </tr>
   </thead>
   <tbody>
@@ -16,6 +17,7 @@
       <td><%= brand_model.name %></td>
       <td><%= brand_model.product_id %></td>
       <td><%= brand_model.created_at %></td>
+      <td><%= link_to 'Edit', edit_product_brand_model_path(@product, brand_model), class: 'btn btn-warning btn-sm' %></td>  
     </tr>
   <% end %>
   </tbody>

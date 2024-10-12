@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: :index
   before_action :search_products, only: :index
   before_action :get_id, only: [:edit, :update, :destroy]
-  before_action :validate_post_owner, only: [:edit, :update, :destroy]
+  before_action :validate_product_owner, only: [:edit, :update, :destroy]
 
   def index
     if search_products.nil?
@@ -88,7 +88,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def validate_post_owner
+  def validate_product_owner
     unless @product.user == current_user
       flash[:alert] = 'the post not belongs to you'
       redirect_to root_path
