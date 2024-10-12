@@ -1,0 +1,19 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="card" style="max-width: 400px; width: 100%;">
+    <div class="card-header">
+      <h5 class="card-title text-center">Edit Product</h5>
+    </div>
+    <div class="card-body">
+      <%= form_with model: @brand_model, url: product_brand_model_path do |form| %>
+        <div class="mb-3">
+          <%= form.label :edit_brand_model, class: "form-label" %>
+          <%= form.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="mb-3 text-center">
+          <%= form.submit class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
